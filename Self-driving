@@ -1,0 +1,59 @@
+class SelfDrivingVehicle:
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+        self.current_speed = 0
+        self.is_engine_on = False
+
+    def start_engine(self):
+        self.is_engine_on = True
+
+    def stop_engine(self):
+        self.is_engine_on = False
+
+    def accelerate(self, speed):q
+        if self.is_engine_on:
+            self.current_speed += speed
+
+    def brake(self, speed):
+        if self.current_speed >= speed:
+            self.current_speed -= speed
+        else:
+            self.current_speed = 0
+
+    def get_speed(self):
+        return self.current_speed
+
+    def autonomous_drive(self):
+        if self.is_engine_on:
+            # AI perception module
+            obstacle_distance = self.detect_obstacle()
+
+            # AI decision-making module
+            if obstacle_distance < 10:  # If obstacle is closer than 10 units
+                self.brake(5)  # Apply brakes
+            else:
+                self.accelerate(10)  # Continue accelerating
+
+            # AI control module
+            # Send control signals to actuators (e.g., steering, acceleration, braking)
+
+    def detect_obstacle(self):
+        # Simulated obstacle detection algorithm
+        # Returns the distance to the nearest obstacle
+        return 8.5  # Simulated obstacle distance
+
+# Create an instance of a self-driving vehicle
+car = SelfDrivingVehicle("Tesla", "Model S")
+
+# Start the engine
+car.start_engine()
+
+# Simulate autonomous driving
+car.autonomous_drive()
+
+# Print the current speed
+print("Current Speed:", car.get_speed())
+
+# Stop the engine
+car.stop_engine()
